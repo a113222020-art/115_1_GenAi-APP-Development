@@ -1,4 +1,4 @@
-# 第 8 週學生起步專案｜Pydantic 課堂簡化版 活動報名資訊整理器
+# 活動報名資訊整理器
 
 本專案為第 8 週 GenAI 期中個人小專題，使用 Streamlit 與 OpenAI API 建構，旨在協助活動主辦方與社團幹部快速從混亂的宣傳稿中提取關鍵報名資訊。
 
@@ -27,13 +27,11 @@ VS Code 的 Python: Select Interpreter 須選本資料夾的 `.venv/Scripts/pyth
 
 ## 先完成 A／B／C，再開啟 API
 
-## 先完成 A／B／C，再開啟 API
-
 | 任務 | 修改位置 | 完成條件與實作內容 |
 |---|---|---|
 | A：定位與規則 | `APP_TITLE`、`INSTRUCTIONS` | **【已完成】活動報名資訊整理器**：為社團幹部與主辦方抽取關鍵欄位；強調只依原文提取，若原文資訊不足（如未提及費用）則自動填寫「原文未提供」，不隨意編造金額。 |
 | B：資料契約 | `class ProjectResult` | **【已完成】自訂 4 個必填欄位**：`event_name`（活動名稱）、`date_time`（活動時間）、`location`（活動地點）、`fee`（報名費用）。保留 `model_config = ConfigDict(extra="forbid", strict=True)`。 |
-| C：介面 | `FIELD_LABELS`、表單與結果區 | **【已完成】介面標籤對應**：設定為 📌活動名稱、🕒活動時間、📍活動地點、💰報名費用。結果區清晰呈現，方便使用者對照原文閱讀。 |
+| C：介面 | `FIELD_LABELS`、表單與結果區 | **【已完成】介面標籤對應**：設定為 活動名稱、活動時間、活動地點、報名費用。結果區清晰呈現，方便使用者對照原文閱讀。 |
 
 學生模型已完成欄位設計（非空白模型）；欄位皆使用 `Field(description="...")` 補充用途，無設定預設值（皆為必填欄位）。
 採用 Pydantic 理由：透過 `BaseModel` 定義嚴格契約，配合 `extra="forbid"` 防止 AI 產生額外未定義欄位，並利用 SDK `responses.parse()` 在本機與伺服器端進行雙重型別與格式驗證。
